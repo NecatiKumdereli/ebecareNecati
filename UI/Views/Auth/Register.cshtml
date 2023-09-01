@@ -1,0 +1,113 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model DataTransferObject.User.UserRegisterDTO
+@{
+    Layout = null;
+}
+<h1>Kayıt Olma Sayfası</h1>
+
+<div id="app">
+    <div>
+        <label>Ad</label>
+        <input type="text" v-model="userRegisterDTO.name" name="Name" placeholder="Ad" />
+    </div>
+
+    <div>
+        <label>Soyad</label>
+        <input type="text" v-model="userRegisterDTO.surname" name="Surname" placeholder="Soyad" />
+    </div>
+
+    <div>
+        <label>Kullanıcı Adı</label>
+        <input type="text" v-model="userRegisterDTO.username" name="UserName" placeholder="Kullanıcı Adı" />
+    </div>
+
+    <div>
+        <label>Şifre</label>
+        <input type="password" v-model="userRegisterDTO.password" name="Password" placeholder="Şifre" />
+    </div>
+
+    <div>
+        <label>Şifre Tekrarı</label>
+        <input type="password" v-model="userRegisterDTO.passwordRepeat" name="PasswordRepeat" placeholder="Şifre Tekrarı" />
+    </div>
+
+
+    <button v-on:click="register()">Kayıt Ol</button>
+    <button v-on:click="deneme()">Deneme</button>
+</div>
+<script src="~/js/global_libraries/vue.global.js"></script>
+<script src="~/js/global_libraries/axios.min.js"></script>
+<script src="~/js/site.js"></script>
+
+<script type="text/javascript">
+    error_str = [];
+    const vm = Vue.createApp({
+        data() {
+            return {
+                userRegisterDTO: {
+                    "name": "",
+                    "surname": "",
+                    "username": "",
+                    "password": "",
+                    "passwordRepeat": "",
+                },
+
+            }
+        },
+        async mounted() {
+            console.log("Yüklendik");
+        },
+        methods: {
+             async register() {
+                const url = "/Auth/Register";
+                let data = vm.userRegisterDTO;
+                console.log(data);
+                let res = {};
+                res = await SendPostRequest(url, data);
+                console.log("Register sayfasındayız", res);
+
+                //let res = null;
+
+                //try {
+                //    res = await axios.post(url, data);
+                //    //var temp = JSON.parse(res);
+                //    console.log("cevappp " ,res);
+                //    var errors = res.data;
+                //    console.log("Hatalar silsilesi " , errors);
+                //    let temp = errors.split(",");
+               
+                //    let tempData = [];
+                //    for(let i = 0; i < temp.length; i++){
+                //        let data = temp[i].split("==>");
+                //        tempData.push(data[0]);
+                //    }
+
+                //    console.log("hatalar burada", tempData);
+
+                //}
+                //catch (err) {
+                //    console.log("cathce düşmüşüz  " ,err);
+                //    let details = JSON.parse(err.response.data);
+                //    //console.log("detaylar" , details)
+                //    //location.href =`/Error/Error?details= ${err.response.data}`;
+                //}
+            },
+            async deneme() {
+                let res = {};
+                let url = "/Home/Deneme";
+                let params = {text1: "Selamlar", text2: "Selamlar efenim"};
+                res = await SendGetRequest(url,params);
+                console.log("get cevabı " , res);
+            }
+        },
+    }).mount("#app");
+
+
+</script>
+
+@section Scripts{
+
+
+}

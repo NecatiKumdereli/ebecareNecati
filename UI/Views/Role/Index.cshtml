@@ -1,0 +1,49 @@
+﻿@model Core.ResultType.Result<List<DataTransferObject.Role.RoleDTO>>
+@{
+    ViewData["Title"] = "Rol Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Head{
+
+}
+<div id="app" class="widget-content widget-content-area">
+
+    <a href="" class="btn btn-info"><i class="icon-pencil4 mr-3"></i></a> <span>Rol Düzenle</span>
+    <a href="" class="btn bg-green-400"><i class="fa fa-retweet"></i>Rol Yetkilendir</a>
+    <a onclick="ShowAlert()" class="btn btn-danger" style="color:white;"><i class="feather fa fa-trash"></i></a> <span>Rol Sil ! (Acil olmadıkça kullanılmamasını rica ediyoruz.)</span>
+    <br /><br />
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Rol Adı</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-show="roles.length > 0" v-for="item in roles">
+                    <td v-text="item.id"></td>
+                    <td v-text="item.name"></td>
+                    <td>
+                        @*<a asp-controller="Role" asp-action="RolAdmins" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa-solid fa-magnifying-glass-chart" style="color:white;"></i></a>*@
+                        <a :href="'/Role/Edit?id=' + item.id" class="btn btn-info"><i class="icon-pencil4 mr-3" style="color:white;"></i> </a>
+                        <a :href="'/Role/RolAuthentication?id=' + item.id" class="btn bg-green-400"><i class="fa fa-retweet"></i> </a>
+                        <a href="javascript:void(0);" v-on:click="DeleteRole(item.id,item.name)" class="btn btn-danger"><i class="fa fa-trash" style="color:white;"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script>
+
+        function ShowAlert() {
+            Swal.fire("DİKKAT ", "ŞÖĞÜİ", "success");
+        }
+
+    </script>
+    <script src="~/page-js/role/index.js"></script>
+}
+<!-- /Content -->

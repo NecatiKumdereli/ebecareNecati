@@ -1,0 +1,71 @@
+﻿@model UI.Models.RequestModel
+@{
+    ViewData["Title"] = "Modül Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int id = Model.Id != 0 ? Model.Id : 0;
+    int myPage = Model.Page != 0 ? Model.Page : 0;
+}
+<div id="app" class="widget-content widget-content-area">
+
+    <a href="" class="btn btn-info"><i class="icon-pencil4 mr-3"></i></a> <span>Modül Düzenle</span>
+    <a class="btn btn-danger" style="color:white;"><i class="feather fa fa-trash"></i></a> <span>Modül Sil</span>
+    <br /><br />
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Modül Adı</th>
+                    <th>Controller</th>
+                    <th>Action</th>
+                    <th>Alt Modüller</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-show="list.length > 0" v-for="item in list">
+                    <td v-text="item.id"></td>
+                    <td v-text="item.name"></td>
+                    <td v-text="item.controller"></td>
+                    <td v-text="item.action"></td>
+                    <td class="text-center">
+                        <a class="btn badge badge-primary" data-placement="bottom" data-popup="tooltip" title="Alt Modüller" :href="'/Module/Index?id=' + item.id">
+                            Alt Modüllere Git
+                        </a>
+                    </td>
+                    <td>
+                        <a :href="'/Module/Edit?id=' + item.id " class="btn btn-info"><i class="icon-pencil4 mr-3" style="color:white;"></i> </a>
+                        <a href="javascript:void(0);" v-on:click="DeleteModule(item.id,item.name)" class="btn btn-danger"><i class="feather fa fa-trash" style="color:white;"></i></a>
+                    </td>
+                </tr>
+                <tr v-show="list.length <= 0">
+                    <td colspan="6">Sistemde kayıtlı modül bulunamadı</td>
+                </tr>
+            </tbody>
+        </table>
+        @*        <div class="paginating-container pagination-solid">
+        <a :href="'/Module/Index?page=' + (pagedModules.index - 1)" v-show="pagedModules.hasPrevious" class="prev"><i class="fas fa-arrow-right"></i></a>
+        <ul class="pagination" v-for="page in pagedModules.pages" :key="page">
+        <li><a :href="'/Module/Index?page=' + (page - 1)" v-bind:class="(page == pagedModules.index + 1) ? 'active' : ''">{{page}}</a></li>
+        </ul>
+        <a :href="'/Module/Index?page=' + (pagedModules.index + 1)" v-show="pagedModules.hasNext" class="next"><i class="fas fa-arrow-right"></i></a>
+        </div>*@
+        <div class="paginating-container pagination-solid">
+            <ul class="pagination">
+                <li v-show="pagedModules.hasPrevious" class="prev"><a :href="'/Module/Index?page=' + (pagedModules.index - 1)"><i class="fas fa-arrow-left"></i></a></li>
+                <li v-for="page in pagedModules.pages" :key="page" v-bind:class="(page == pagedModules.index + 1) ? 'active' : ''">
+                    <a :href="'/Module/Index?page=' + (page - 1)">{{page}}</a>
+                </li>
+                <li v-show="pagedModules.hasNext" class="next"><a :href="'/Module/Index?page=' + (pagedModules.index + 1)"><i class="fas fa-arrow-right"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        let id = @id;
+        let page = @myPage;
+    </script>
+    <script src="~/page-js/module/index.js"></script>
+
+}

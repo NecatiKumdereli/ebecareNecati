@@ -1,0 +1,165 @@
+﻿@model DataTransferObject.ModuleRole.ModuleRoleModel
+@{
+    ViewData["Title"] = "Rol Yetki Gösterim Ekranı";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<int> idlist = new List<int>();
+    if (Model != null && Model.AuthModuleList != null && Model.AuthModuleList.Count > 0)
+    {
+        foreach (var item in Model.AuthModuleList)
+        {
+            idlist.Add(item.ModuleDTO.Id);
+        }
+    }
+}
+
+@section Head{
+    @*<link rel="stylesheet" href="~/plugin/select2js/css/select2.min.css" />
+    <link rel="stylesheet" href="~/assets/icheck/skins/all.css" />*@
+}
+
+<!-- Page header -->
+<div class="page-header page-header-light">
+    
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Anasayfa</a>
+                <span class="breadcrumb-item active">Rol Yetkilendirme Ekranı</span>
+            </div>
+            <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+<div class="pt-1">
+    <div class="card">
+        <div class="card-body">
+           @* @if (!Model.IsSuccess || Model.Data == null)
+            {
+                <h4 class="card-title">@Model.Message</h4>
+            }*@
+            @if (ViewData["message"] != null)
+            {
+                <div class="alert alert-danger mt-2 p-2" role="alert">
+                    @ViewData["message"]
+                </div>
+            }
+            else
+            {
+                <form class="forms-sample" asp-controller="AdminRol" asp-action="RolAuthentication" asp-method="post">
+                    <div class="row" style="background-color:#ffffff">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12" id="modul">
+                                    <div class="form-group row" style="margin-left:20px; margin-top:20px;">
+                                        <h4 class="col-form-label">Modül Listesi</h4>
+                                    </div>
+                                    <hr />
+                                    @if (Model != null && Model.ModuleList.Count > 0)
+                                    {
+                                        foreach (var item in Model.ModuleList)
+                                        {
+                                            <div class="form-check form-check-flat" style="margin-left:20px;">
+                                                <label class="form-check-label">
+                                                    @if (idlist.Contains(item.Id))
+                                                    {
+                                                        <input type="checkbox" name="moduleList[]" id="parent@(item.Id)" class="form-check-input" onchange="altsecim(@(item.Id));" value="@item.Id" checked>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="checkbox" name="moduleList[]" id="parent@(item.Id)" class="form-check-input" onchange="altsecim(@(item.Id));" value="@item.Id">
+                                                    }
+                                                    @item.Name
+
+                                                </label>
+                                                @if (item.SubModules.Count > 0)
+                                                {
+                                                    <a href="javascript:subToggle(@item.Id)" style="float:right;margin-top:-20px;margin-right:20px;"><i class="fas fa-angle-down" style="color:coral; font-size:20px;"></i>Altı Göster</a>
+                                                }
+                                            </div>
+                                            <hr />
+                                            if (item.SubModules.Count > 0)
+                                            {
+                                                foreach (var subitem in item.SubModules)
+                                                {
+                                                    <div class="col-md-6 sub@(item.Id)" style="display:none;">
+                                                        <div class="form-check form-check-flat" style="margin-left:50px;">
+                                                            <label class="form-check-label">
+                                                                @if (idlist.Contains(subitem.Id))
+                                                                {
+                                                                    <input type="checkbox" name="moduleList[]" class="form-check-input" value="@subitem.Id" checked>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input type="checkbox" name="moduleList[]" class="form-check-input" value="@subitem.Id">
+
+                                                                }
+                                                                @subitem.Name
+                                                            </label>
+                                                        </div>
+                                                        <hr style="color:coral; border:solid 1px coral; margin-left:50px;" />
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6" style="padding-bottom:1rem">
+                            <button asp-controller="Role" asp-action="RolAuthentication" asp-route-id="@Model.RoleId" type="submit" class="btn btn-success mr-2">Yetkilendirmeyi Kaydet</button>
+                            <button asp-action="Index" asp-controller="Role" class="btn btn-light">Vazgeç</button>
+                        </div>
+
+                    </div>
+
+                </form>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @*<script src="~/victory/js/file-upload.js"></script>*@
+    @*<script src="~/plugin/select2js/js/select2.min.js"></script>*@
+    <script src="~/assets/icheck/icheck.min.js"></script>
+    <script src="~/plugin/js/iCheck.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-multiple').select2();
+        });
+        function subToggle(id) {
+            var noneis = $('.sub' + id + ':eq(0)').css('display');
+
+            if (noneis == "none") {
+                $('.sub' + id).css('display', 'block');
+            } else {
+                $('.sub' + id).css('display', 'none');
+            }
+
+        }
+        function subcat(id) {
+            var noneis = $('.subc' + id + ':eq(0)').css('display');
+
+            if (noneis == "none") {
+                $('.subc' + id).css('display', 'block');
+            } else {
+                $('.subc' + id).css('display', 'none');
+            }
+
+        }
+        function altsecim(id) {
+            if (document.getElementById("parent" + id).checked) {
+                $('.sub' + id + ' input[type=checkbox]').prop("checked", true);
+            }
+            else {
+                $('.sub' + id + ' input[type=checkbox]').prop("checked", false);
+
+            }
+
+        }
+    </script>
+
+
+}

@@ -1,0 +1,42 @@
+﻿@model UI.Models.RequestModel
+@{
+    ViewData["Title"] = "Rol Düzenleme Ekranı";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int id = Model.Id != 0 ? Model.Id : 0;
+}
+
+<div class="col-lg-12 layout-spacing" id="app">
+    <div class="container statbox widget box box-shadow">
+        <div class="widget-header">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                    <h4>Rol Düzenleme Sayfası</h4>
+                </div>
+            </div>
+        </div>
+        <div class="widget-content widget-content-area">
+            <form v-on:submit.prevent="UpdateForm()" asp-method="Post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Rol Tanımı</label>
+                    <div class="col-sm-5">
+                        <input class="form-control" name="Rol" v-model="role.name" maxlength="32">
+                        <span data-valmsg-for="Rol" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">&nbsp;</label>
+                    <div class="col-sm-10">
+                        <input type="submit" class="btn btn-success" value="KAYDET" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        let id = @id;
+    </script>
+    <script src="~/page-js/role/update.js"></script>
+}

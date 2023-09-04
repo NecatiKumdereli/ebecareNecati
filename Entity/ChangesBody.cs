@@ -9,5 +9,7 @@ namespace Entity
 {
     public class ChangesBody : BaseEntity
     {
+        public string Menstruation { get; set; }
+
     }
 }

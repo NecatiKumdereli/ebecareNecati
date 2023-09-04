@@ -9,5 +9,6 @@ namespace Entity
 {
     public class BirthProcess : BaseEntity
     {
+        public DateTime DateTime { get; set; }
     }
 }

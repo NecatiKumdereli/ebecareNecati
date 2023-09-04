@@ -1,13 +1,12 @@
-﻿using Core.DataAccess.Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity
+namespace DataTransferObject.DailyLife
 {
-    public class TilburgForm : BaseEntity
+    public class DailyLifeDTO
     {
     }
 }

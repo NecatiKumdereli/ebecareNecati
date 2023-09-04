@@ -9,5 +9,10 @@ namespace Entity
 {
     public class DailyLife : BaseEntity
     {
+        public string name { get; set; }
+        public DateTime date { get; set; }
+
+
+
     }
 }

@@ -8,5 +8,10 @@ namespace DataTransferObject.BirthProcess
 {
     public class BirthProcessDTO
     {
+        public string ProcessName { get; set; }
+        public string Description { get; set; }
+        public DateTime DateOfProcess { get; set; }
+        public string DoctorName { get; set; }
+        public string HospitalName { get; set; }
     }
 }

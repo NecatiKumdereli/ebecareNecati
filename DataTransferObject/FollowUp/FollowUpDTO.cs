@@ -8,5 +8,8 @@ namespace DataTransferObject.FollowUp
 {
     public class FollowUpDTO
     {
+        public string Name { get; set; }
+        public string PhysicalExamination { get; set; }
+        public string LaboratoryTests { get; set; }
     }
 }

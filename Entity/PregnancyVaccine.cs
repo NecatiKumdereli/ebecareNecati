@@ -9,5 +9,12 @@ namespace Entity
 {
     public class PregnancyVaccine : BaseEntity
     {
+        public string VaccineName { get; set; } 
+        public string Description { get; set; } 
+        public int RecommendedWeek { get; set; }
+        public string DosageInformation { get; set; }
+        public int NurseName { get; set; }
+        public DateTime DateUpdated { get; set; } 
+
     }
 }

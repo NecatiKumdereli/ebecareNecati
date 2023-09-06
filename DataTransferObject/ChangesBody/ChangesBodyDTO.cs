@@ -8,5 +8,8 @@ namespace DataTransferObject.ChangesBody
 {
     public class ChangesBodyDTO
     {
+        public string Menstruation { get; set; }
+        public int WeekOfPregnancy { get; set; }
+        public string Description { get; set; }
     }
 }

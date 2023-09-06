@@ -10,6 +10,8 @@ namespace Entity
     public class ChangesBody : BaseEntity
     {
         public string Menstruation { get; set; }
+        public int WeekOfPregnancy { get; set; } 
+        public string Description { get; set; }
 
     }
 }

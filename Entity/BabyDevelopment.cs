@@ -14,6 +14,8 @@ namespace Entity
         public int Day { get; set; }
         public int Heigth { get; set; }
 
+        public int Weight { get; set; }
+
 
 
 

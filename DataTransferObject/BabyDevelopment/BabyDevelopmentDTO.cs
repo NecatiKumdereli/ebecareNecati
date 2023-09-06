@@ -13,5 +13,8 @@ namespace DataTransferObject.BabyDevelopment
         public int Day { get; set; }
         public int Heigth { get; set; }
 
+        public int Weight { get; set; }
+
+
     }
 }

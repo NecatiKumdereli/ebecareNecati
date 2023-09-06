@@ -8,5 +8,9 @@ namespace DataTransferObject.IndividualCare
 {
     public class IndividualCareDTO
     {
+        public string Topic { get; set; }
+        public string Description { get; set; }
+        public List<string> Tips { get; set; }
+        public DateTime DateCreated { get; set; }
     }
 }

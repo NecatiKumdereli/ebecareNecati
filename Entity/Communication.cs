@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class ChangesBody : BaseEntity
+    public class Communication : BaseEntity
     {
-        public int TrimestirId { get; set; }
+        public int UserId { get; set; }
+        public bool Status { get; set; }
+        public int Situation { get; set; }
+        public int SentUser { get; set; }
         public string Description { get; set; }
         public DateTime CreateDate { get; set; }
-
         public DateTime UpdateDate { get; set; }
-        public Trimestir Trimestir { get; set; }
-
+        public User User { get; set; }
+        
     }
 }

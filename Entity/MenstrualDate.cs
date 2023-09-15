@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class PersonalForm : BaseEntity
+    public class MenstrualDate : BaseEntity
     {
+        public int UserId { get; set; }
+        public DateTime Date { get; set; }
+        public User User { get; set; }
     }
 }

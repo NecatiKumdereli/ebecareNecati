@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class ChangesBody : BaseEntity
+    public class TestVaccineUser : BaseEntity
     {
-        public int TrimestirId { get; set; }
-        public string Description { get; set; }
+        public int TestVaccineId { get; set; }
+        public int UserId { get; set; }
         public DateTime CreateDate { get; set; }
-
         public DateTime UpdateDate { get; set; }
-        public Trimestir Trimestir { get; set; }
-
+        public User User { get; set; }
+        public TestVaccine TestVaccine { get; set; }
+       
     }
 }

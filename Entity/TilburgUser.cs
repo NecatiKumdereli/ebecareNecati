@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class ChangesBody : BaseEntity
+    public class TilburgUser : BaseEntity
     {
-        public int TrimestirId { get; set; }
-        public string Description { get; set; }
+        public int UserId { get; set; }
+        public int TilburgFormId { get; set; }
+        public int Answer { get; set; }
         public DateTime CreateDate { get; set; }
-
         public DateTime UpdateDate { get; set; }
-        public Trimestir Trimestir { get; set; }
-
+        public TilburgForm TilburgForm { get; set; }
+        public User User { get; set; }
+        
     }
 }

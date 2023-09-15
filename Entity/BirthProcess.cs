@@ -9,10 +9,11 @@ namespace Entity
 {
     public class BirthProcess : BaseEntity
     {
-        public string ProcessName { get; set; } 
+        public int ParameterId { get; set; } 
+        public string Title { get; set; } 
         public string Description { get; set; } 
-        public DateTime DateOfProcess { get; set; } 
-        public string DoctorName { get; set; }
-        public string HospitalName { get; set; }
+        public DateTime CreateDate { get; set; } 
+        public DateTime UpdateDate { get; set; } 
+        public Parameter Parameter { get; set; }
     }
 }

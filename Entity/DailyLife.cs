@@ -9,11 +9,12 @@ namespace Entity
 {
     public class DailyLife : BaseEntity
     {
-        public int WeekOfPregnancy { get; set; } 
-        public string Topic { get; set; } 
+        public int ParameterId { get; set; } 
+        public string Title { get; set; } 
         public string Description { get; set; }
-        public List<string> Tips { get; set; } 
-        public DateTime DateCreated { get; set; } 
+        public DateTime CreateDate { get; set; } 
+        public DateTime UpdateDate { get; set; } 
+        public Parameter Parameter { get; set; } 
 
 
 

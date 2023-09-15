@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class ChangesBody : BaseEntity
+    public class PrenatalUser : BaseEntity
     {
-        public int TrimestirId { get; set; }
-        public string Description { get; set; }
+        public int PrenatalFormId { get; set; }
+        public int UserId { get; set; }
+        public string Answer { get; set; }
         public DateTime CreateDate { get; set; }
-
         public DateTime UpdateDate { get; set; }
-        public Trimestir Trimestir { get; set; }
-
+        public User User { get; set; }
+        public PrenatalForm PrenatalForm { get; set; }
     }
 }

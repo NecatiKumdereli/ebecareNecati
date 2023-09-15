@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class ChangesBody : BaseEntity
+    public class PospartumProcess : BaseEntity
     {
-        public int TrimestirId { get; set; }
+        public int ParameterId { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public DateTime CreateDate { get; set; }
-
         public DateTime UpdateDate { get; set; }
-        public Trimestir Trimestir { get; set; }
-
+        public Parameter Parameter { get; set; }
     }
 }
